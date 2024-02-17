@@ -25,13 +25,6 @@ const RoomContainer = ({ className }) => {
 		setIsLoading(false);
 	}, [dispatch, params.id]);
 
-	// const SpecificRoomPage = (
-	// 	<div className={className}>
-	// 		<RoomContent room={room} />
-	// 		<ReservationContent roomId={room.sysId} />
-	// 	</div>
-	// );
-
 	return (
 		<div className={className}>
 			{isLoading ? (

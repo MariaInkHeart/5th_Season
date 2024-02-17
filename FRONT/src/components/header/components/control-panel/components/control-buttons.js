@@ -29,6 +29,7 @@ const Anchor = styled.a`
 const ControlButtonsContainer = ({ className }) => {
 	const roleId = useSelector(selectUserRole);
 	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+	const isModer = checkAccess([ROLE.MODERATOR], roleId);
 	const isGuest = checkAccess([ROLE.GUEST], roleId);
 
 	return (
@@ -49,12 +50,13 @@ const ControlButtonsContainer = ({ className }) => {
 						</NavButtons>
 					</>
 				)}
-				{isAdmin && (
-					<>
-						<NavButtons to="/reservlist">Все бронирования</NavButtons>
-						<NavButtons to="/users">Пользователи</NavButtons>
-					</>
-				)}
+				{isModer ||
+					(isAdmin && (
+						<>
+							<NavButtons to="/reservlist">Все бронирования</NavButtons>
+							{isAdmin && <NavButtons to="/users">Пользователи</NavButtons>}
+						</>
+					))}
 			</RightDownAligned>
 		</div>
 	);

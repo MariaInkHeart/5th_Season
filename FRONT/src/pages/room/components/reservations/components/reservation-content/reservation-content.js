@@ -94,6 +94,7 @@ const ReservationContentContainer = ({ className, roomId }) => {
 							type="number"
 							name="number"
 							id="amountOfPeople"
+							max="5"
 							value={options}
 							onChange={onOptionChange}
 							required
