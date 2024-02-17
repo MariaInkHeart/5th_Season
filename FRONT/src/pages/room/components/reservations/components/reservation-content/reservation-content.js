@@ -39,6 +39,7 @@ const ReservationContentContainer = ({ className, roomId }) => {
 	};
 	const onOptionChange = ({ target }) => {
 		if (target.value <= "3") {
+			setServerError(null);
 			setConfirmation(null);
 			setOptions(target.value);
 		} else {
