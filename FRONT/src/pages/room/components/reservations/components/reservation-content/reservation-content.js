@@ -43,7 +43,9 @@ const ReservationContentContainer = ({ className, roomId }) => {
 			setConfirmation(null);
 			setOptions(target.value);
 		} else {
-			setServerError("Максимальное количество гостей номера не может привышать 3");
+			setServerError(
+				"Максимальное количество гостей номера не может быть меньше 1 или привышать 3",
+			);
 		}
 	};
 
