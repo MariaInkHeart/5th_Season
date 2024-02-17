@@ -50,13 +50,17 @@ const ControlButtonsContainer = ({ className }) => {
 						</NavButtons>
 					</>
 				)}
-				{isModer ||
-					(isAdmin && (
-						<>
-							<NavButtons to="/reservlist">Все бронирования</NavButtons>
-							{isAdmin && <NavButtons to="/users">Пользователи</NavButtons>}
-						</>
-					))}
+				{isModer && (
+					<>
+						<NavButtons to="/reservlist">Все бронирования</NavButtons>
+					</>
+				)}
+				{isAdmin && (
+					<>
+						<NavButtons to="/reservlist">Все бронирования</NavButtons>
+						<NavButtons to="/users">Пользователи</NavButtons>
+					</>
+				)}
 			</RightDownAligned>
 		</div>
 	);

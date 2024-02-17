@@ -38,8 +38,12 @@ const ReservationContentContainer = ({ className, roomId }) => {
 		setArrivalDate(target.value);
 	};
 	const onOptionChange = ({ target }) => {
-		setConfirmation(null);
-		setOptions(target.value);
+		if (target.value <= "3") {
+			setConfirmation(null);
+			setOptions(target.value);
+		} else {
+			setServerError("Максимальное количество гостей номера не может привышать 3");
+		}
 	};
 
 	const onSubmit = () => {
