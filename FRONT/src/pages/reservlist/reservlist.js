@@ -63,6 +63,7 @@ const ReservListContainer = ({ className }) => {
 								options,
 								arrivalDate,
 								leavingDate,
+								roomPrice,
 							}) => (
 								<UserReservCard
 									key={id}
@@ -72,6 +73,7 @@ const ReservListContainer = ({ className }) => {
 									options={options}
 									arrivalDate={arrivalDate}
 									leavingDate={leavingDate}
+									price={roomPrice}
 									onReservRemove={() => onReservRemove(id)}
 								/>
 							),

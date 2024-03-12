@@ -6,11 +6,21 @@ const initialRoomState = {
 	imageUrl: "",
 	content: "",
 	price: "",
-	reservations: [],
+	reviews: [],
 };
 
 export const roomReducer = (state = initialRoomState, action) => {
 	switch (action.type) {
+		case ACTION_TYPE.ADD_REVIEW:
+			return {
+				...state,
+				reviews: [...state.reviews, action.payload],
+			};
+		case ACTION_TYPE.REMOVE_REVIEW:
+			return {
+				...state,
+				reviews: state.reviews.filter((review) => review.id !== action.payload),
+			};
 		case ACTION_TYPE.SET_ROOM_DATA:
 			return {
 				...state,

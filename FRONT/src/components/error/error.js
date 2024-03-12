@@ -12,7 +12,7 @@ const Div = styled.div`
 export const Error = ({ error }) =>
 	error && (
 		<Div>
-			<H2>Ошибка</H2>
+			<H2 margin="15px 0 ">Ошибка</H2>
 			<div>{error}</div>
 		</Div>
 	);

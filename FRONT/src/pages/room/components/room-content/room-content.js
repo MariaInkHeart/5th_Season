@@ -12,11 +12,10 @@ const PriceDiv = styled.div`
 const RoomContentContainer = ({
 	className,
 	room: { id, title, imageUrl, content, price },
-	isLoading,
 }) => {
-	return isLoading ? (
+	return !id ? (
 		<div className={className}>
-			<div className="item">
+			<div className="dot-item">
 				<RevolvingDot
 					height="80"
 					width="80"
@@ -27,35 +26,47 @@ const RoomContentContainer = ({
 		</div>
 	) : (
 		<div className={className}>
-			<img
-				src={imageUrl}
-				alt={title}
-			/>
-			<H2>{title}</H2>
+			<div className="room-item">
+				<img
+					src={imageUrl}
+					alt={title}
+				/>
+				<div className="room-text">
+					<H2 margin="0 ">{title}</H2>
 
-			<div className="room-text">{content}</div>
-			<PriceDiv>{price} рублей за ночь</PriceDiv>
+					<div className="room-discr">{content}</div>
+					<PriceDiv>{price} рублей за ночь</PriceDiv>
+				</div>
+			</div>
 		</div>
 	);
 };
 
 export const RoomContent = styled(RoomContentContainer)`
+	& .room-item {
+		display: flex;
+	}
+
 	& img {
-		width: 508px;
-		height: 338px;
+		width: 762px;
+		height: 507px;
 		float: left;
 		margin: 0 20px 5px 0;
 	}
 
-	& .room-text {
+	& .room-discr {
 		font-size: 18px;
 		white-space: pre-line;
+		text-align: justify;
 	}
 
-	.item {
+	.dot-item {
 		display: flex;
 		justify-content: center;
 		margin: 20px;
+	}
+
+	.room-text {
 	}
 `;
 

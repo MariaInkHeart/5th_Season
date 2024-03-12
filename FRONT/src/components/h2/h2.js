@@ -6,7 +6,7 @@ const H2Conrainer = ({ children, className }) => (
 );
 
 export const H2 = styled(H2Conrainer)`
-	margin: 40px 0 15px 0;
+	margin: ${({ margin = "40px 0 15px 0" }) => margin};
 `;
 
 H2.propTypes = {

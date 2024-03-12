@@ -7,6 +7,7 @@ const initualReservationState = {
 	options: null,
 	arrivalDate: null,
 	leavingdate: null,
+	price: null,
 };
 
 export const reservationReducer = (state = initualReservationState, action) => {

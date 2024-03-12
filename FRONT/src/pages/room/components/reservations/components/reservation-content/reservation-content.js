@@ -13,7 +13,7 @@ import { Error } from "../../../../../../components";
 // 	leavingDate: yup.string().required("Выберите дату отъезда"),
 // });
 
-const ReservationContentContainer = ({ className, roomId }) => {
+const ReservationContentContainer = ({ className, roomPrice, roomName }) => {
 	const userLogin = useSelector(selectUserLogin);
 	const dispatch = useDispatch();
 	const userRole = useSelector(selectUserRole);
@@ -53,7 +53,14 @@ const ReservationContentContainer = ({ className, roomId }) => {
 		if (arrivalDate && leavingDate && options) {
 			setServerError(null);
 			dispatch(
-				addReservationAsync(userLogin, roomId, options, arrivalDate, leavingDate),
+				addReservationAsync(
+					userLogin,
+					roomName,
+					options,
+					arrivalDate,
+					leavingDate,
+					roomPrice,
+				),
 			);
 			setConfirmation("Ваша бронь подтверждена");
 		} else {
@@ -101,7 +108,6 @@ const ReservationContentContainer = ({ className, roomId }) => {
 							type="number"
 							name="number"
 							id="amountOfPeople"
-							max="5"
 							value={options}
 							onChange={onOptionChange}
 							required
@@ -118,7 +124,9 @@ const ReservationContentContainer = ({ className, roomId }) => {
 				</div>
 			)}
 			{isGuest && (
-				<Error error={"Для совершения брони необходимо авторизоваться"} />
+				<div className="error">
+					<Error error={"Для совершения брони необходимо авторизоваться"} />
+				</div>
 			)}
 		</div>
 	);
@@ -128,8 +136,14 @@ export const ReservationContent = styled(ReservationContentContainer)`
 	background-color: white;
 	text-align: center;
 	padding: 5px 0 5px 0;
+	width: 400px;
+	margin: auto;
+	border: 1px solid #000;
 
 	.amount-of-people {
 		width: 50px;
+	}
+
+	.error {
 	}
 `;

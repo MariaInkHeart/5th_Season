@@ -15,6 +15,7 @@ const reducer = combineReducers({
 	room: roomReducer,
 	rooms: roomsReducer,
 });
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
 export const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));

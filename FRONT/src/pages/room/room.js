@@ -8,12 +8,12 @@ import { RoomContent } from "./components";
 import { ReservationContent } from "./components/reservations/components";
 import { useState } from "react";
 import { RevolvingDot } from "react-loader-spinner";
+import { Reviews } from "./components";
 
 const RoomContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
 	const [isLoading, setIsLoading] = useState(true);
-
 	const room = useSelector(selectRoom);
 
 	useLayoutEffect(() => {
@@ -25,26 +25,33 @@ const RoomContainer = ({ className }) => {
 		setIsLoading(false);
 	}, [dispatch, params.id]);
 
-	return (
+	return isLoading ? (
 		<div className={className}>
-			{isLoading ? (
-				<div className={className}>
-					<div className="item">
-						<RevolvingDot
-							height="80"
-							width="80"
-							color="#4fa94d"
-							ariaLabel="revolving-dot-loading"
-						/>
-					</div>
-				</div>
-			) : (
-				<RoomContent
-					room={room}
-					isLoading={isLoading}
+			<div className="item">
+				<RevolvingDot
+					height="80"
+					width="80"
+					color="#4fa94d"
+					ariaLabel="revolving-dot-loading"
 				/>
-			)}
-			<ReservationContent roomId={room.sysId} />
+			</div>
+		</div>
+	) : (
+		<div className={className}>
+			<RoomContent room={room} />
+
+			<div className="in-line">
+				<Reviews
+					reviews={room.reviews}
+					roomId={room.id}
+				/>
+				<div className="reserv">
+					<ReservationContent
+						roomPrice={room.price}
+						roomName={room.title}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 };
@@ -57,5 +64,15 @@ export const Room = styled(RoomContainer)`
 		display: flex;
 		justify-content: center;
 		margin: 20px;
+	}
+
+	.reserv {
+		margin-top: 20px;
+	}
+
+	.in-line {
+		display: flex;
+		margin: auto 148px;
+		justify-content: space-between;
 	}
 `;

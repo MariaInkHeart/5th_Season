@@ -12,6 +12,7 @@ const UserReservCardContainer = ({
 	options,
 	arrivalDate,
 	leavingDate,
+	price,
 	onReservRemove,
 }) => {
 	const [serverError, setServerError] = useState(null);
@@ -45,8 +46,14 @@ const UserReservCardContainer = ({
 	};
 	const onEditedOptionChange = ({ target }) => {
 		if (target.value !== "") {
-			setServerError(null);
-			setEditedOptions(target.value);
+			if (target.value <= "3" && target.value >= "1") {
+				setServerError(null);
+				setEditedOptions(target.value);
+			} else {
+				setServerError(
+					"Максимальное количество гостей номера не может быть меньше 1 или привышать 3",
+				);
+			}
 		} else {
 			setServerError("Поле не может быть пустым");
 		}
@@ -132,6 +139,7 @@ const UserReservCardContainer = ({
 								onChange={onEditedLDateChange}
 							/>
 						</div>
+						<div className="row">{`Цена: ${price} `}</div>
 					</div>
 				</div>
 			</div>
