@@ -5,6 +5,7 @@ module.exports = function (reservation) {
     options: reservation.options,
     arrivalDate: reservation.arrivalDate,
     leavingDate: reservation.leavingDate,
+    roomPrice: reservation.price,
     id: reservation._id,
   };
 };

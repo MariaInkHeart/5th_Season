@@ -7,7 +7,7 @@ function getRooms() {
 
 //get item
 function getRoom(id) {
-  return Room.findById(id);
+  return Room.findById(id).populate({ path: "reviews", populate: "author" });
 }
 
 module.exports = {

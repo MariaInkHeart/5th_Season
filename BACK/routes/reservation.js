@@ -18,10 +18,11 @@ router.get("/", authenticated, async (req, res) => {
 router.post("/", authenticated, async (req, res) => {
   const newReservation = await addReserv({
     userLogin: req.body.userLogin,
-    roomId: req.body.roomId,
+    roomId: req.body.roomName,
     options: req.body.options,
     arrivalDate: req.body.arrivalDate,
     leavingDate: req.body.leavingDate,
+    price: req.body.roomPrice,
   });
 
   res.send({ data: mapReservation(newReservation) });

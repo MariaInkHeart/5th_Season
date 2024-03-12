@@ -1,3 +1,6 @@
+const mongoose = require("mongoose");
+const mapReviews = require("./mapReviews");
+
 module.exports = function (room) {
   return {
     id: room._id,
@@ -6,5 +9,8 @@ module.exports = function (room) {
     imageUrl: room.image_url,
     content: room.content,
     price: room.price,
+    reviews: room.reviews.map((review) =>
+      mongoose.isObjectIdOrHexString(review) ? review : mapReviews(review)
+    ),
   };
 };
